@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request Form</title>
+    <link rel="stylesheet" href="leaveform.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Leave Request Form</h1>
+            <div class="header-actions">
+                <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <button class="menu-item" onclick="goToAdmin()">
+                        <span class="menu-icon">📊</span>
+                        Leave Panel
+                    </button>
+                    <button class="menu-item" onclick="goToDashboard()">
+                        <span class="menu-icon">🏠</span>
+                        Dashboard
+                    </button>
+                    <button class="menu-item" onclick="goToLeaveForm()">
+                        <span class="menu-icon">📝</span>
+                        Leave Form
+                    </button>
+                    <button class="menu-item" onclick="goToSchedule()">
+                        <span class="menu-icon">📅</span>
+                        Schedule
+                    </button>
+                    <button class="menu-item" onclick="viewProfile()">
+                        <span class="menu-icon">👤</span>
+                        Profile
+                    </button>
+                    <button class="menu-item" onclick="logout()">
+                        <span class="menu-icon">🚪</span>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="form-intro">
+                <p>Submit your leave request. All fields marked with * are required.</p>
+            </div>
+
+            <form id="leaveForm" class="leave-form">
+                <div class="form-grid">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" required placeholder="Enter your full name">
+                        <div class="error-message" id="fullNameError"></div>
+                    </div>
+
+                    <!-- Department -->
+                    <div class="form-group">
+                        <label for="department">Department *</label>
+                        <select id="department" required>
+                            <option value="">Select Department</option>
+                            <option value="Operation">Operation</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Utility">Utility</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Management">Management</option>
+                            <option value="HR">Human Resources</option>
+                            <option value="IT">Information Technology</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <div class="error-message" id="departmentError"></div>
+                    </div>
+
+                    <!-- Leave Type -->
+                    <div class="form-group">
+                        <label for="leaveType">Leave Type *</label>
+                        <select id="leaveType" required>
+                            <option value="">Select Leave Type</option>
+                            <option value="Vacation">Vacation Leave</option>
+                            <option value="Sick">Sick Leave</option>
+                            <option value="Emergency">Emergency Leave</option>
+                            <option value="Maternity">Maternity Leave</option>
+                            <option value="Paternity">Paternity Leave</option>
+                            <option value="Bereavement">Bereavement Leave</option>
+                            <option value="Personal">Personal Leave</option>
+                            <option value="Other">Other Leave</option>
+                        </select>
+                        <div class="error-message" id="leaveTypeError"></div>
+                    </div>
+
+                    <!-- Date Filed -->
+                    <div class="form-group">
+                        <label for="requestDate">Date Filed</label>
+                        <input type="text" id="requestDate" readonly class="readonly-field">
+                    </div>
+
+                    <!-- Start Date -->
+                    <div class="form-group">
+                        <label for="startDate">Start Date *</label>
+                        <input type="date" id="startDate" required>
+                        <div class="error-message" id="startDateError"></div>
+                    </div>
+
+                    <!-- End Date -->
+                    <div class="form-group">
+                        <label for="endDate">End Date *</label>
+                        <input type="date" id="endDate" required>
+                        <div class="error-message" id="endDateError"></div>
+                    </div>
+
+                    <!-- Days Calculation -->
+                    <div class="form-group">
+                        <label for="daysCount">Total Days</label>
+                        <input type="text" id="daysCount" readonly class="readonly-field days-count">
+                        <div class="days-hint" id="daysHint"></div>
+                    </div>
+                </div>
+
+                <!-- Reason -->
+                <div class="form-group full-width">
+                    <label for="reason">Reason for Leave *</label>
+                    <textarea id="reason" rows="4" placeholder="Please provide a detailed reason for your leave request..." required></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> characters
+                    </div>
+                    <div class="error-message" id="reasonError"></div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">📨 Submit Request</span>
+                        <span class="btn-loading" style="display: none;">⏳ Processing...</span>
+                    </button>
+                    <button type="button" class="clear-btn" onclick="clearForm()">🗑️ Clear Form</button>
+                    <button type="button" class="test-btn" onclick="fillTestData()">🧪 Test Data</button>
+                </div>
+
+                <!-- Result Message -->
+                <div id="result" class="result-message"></div>
+            </form>
+        </div>
+
+        <!-- Recent Requests -->
+        <div class="recent-requests" id="recentRequests" style="display: none;">
+            <h3>Your Recent Requests</h3>
+            <div class="requests-list" id="requestsList">
+                <!-- Recent requests will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="leaveform.js"></script>
+</body>
+</html>

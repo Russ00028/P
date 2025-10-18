@@ -1,0 +1,22 @@
+{
+  "name": "p",
+  "version": "1.0.0",
+  "description": "Leave dashboard",
+  "main": "script.js",
+  "scripts": {
+    "build": "node ./scripts/build-dist.js",
+    "start": "npx http-server -p 5000",
+    "test:e2e": "echo \"Run Playwright tests manually\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "firebase": "^12.4.0",
+    "firebase-admin": "^13.5.0",
+    "googleapis": "^162.0.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1"
+  }
+}

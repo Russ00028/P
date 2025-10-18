@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Futuristic Leave Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated Background -->
+  <div class="background-container"></div>
+  
+  <!-- Main Content -->
+  <div class="container">
+    <div id="loginSection" class="card">
+      <form autocomplete="off" class="form" id="loginForm">
+        <div class="control">
+          <h1>Sign In</h1>
+        </div>
+        <div class="control block-cube block-input">
+          <input name="username" id="username" placeholder="Username" type="text" required />
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+        </div>
+        <div class="control block-cube block-input">
+          <input name="password" id="password" placeholder="Password" type="password" required />
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+        </div>
+        <button class="btn block-cube block-cube-hover" type="submit">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">Log In</div>
+        </button>
+      </form>
+    </div>
+
+    <div id="dashboardSection" class="card" style="display:none;">
+      <button class="logout-btn" onclick="logout()">Logout</button>
+  
+      <h1 id="dashmenu">Dashboard Menu</h1>
+      <div class="menu">
+        <button class="btn block-cube block-cube-hover" onclick="window.location.href='leaveform.html'">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">Submit Leave</div>
+        </button>
+        <button id="registerBtn" class="btn block-cube block-cube-hover" onclick="window.location.href='register.html'" style="display:none;">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">Register</div>
+        </button>
+        <button class="btn block-cube block-cube-hover" onclick="window.location.href='admin.html'">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">View Leave</div>
+        </button>
+        <button class="btn block-cube block-cube-hover" onclick="window.location.href='sched.html'">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">View Schedule</div>
+        </button>
+      <button class="btn block-cube block-cube-hover" onclick="window.location.href='profile.html'">
+          <div class="bg-top"><div class="bg-inner"></div></div>
+          <div class="bg-right"><div class="bg-inner"></div></div>
+          <div class="bg"><div class="bg-inner"></div></div>
+          <div class="text">View Profile</div>
+        </button>
+
+  <script type="module" src="firebase-init.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

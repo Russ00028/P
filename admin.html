@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Leave Management System</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Leave Management Panel</h1>
+      <div class="header-actions">
+        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <button class="menu-item" onclick="goToAdmin()">
+            <span class="menu-icon">📊</span>
+            Leave Panel
+          </button>
+          <button class="menu-item" onclick="goToDashboard()">
+            <span class="menu-icon">🏠</span>
+            Dashboard
+          </button>
+          <button class="menu-item" onclick="goToLeaveForm()">
+            <span class="menu-icon">📝</span>
+            Leave Form
+          </button>
+          <button class="menu-item" onclick="goToSchedule()">
+            <span class="menu-icon">📅</span>
+            Schedule
+          </button>
+          <button class="menu-item" onclick="viewProfile()">
+            <span class="menu-icon">👤</span>
+            Profile
+          </button>
+          <button class="menu-item" onclick="logout()">
+            <span class="menu-icon">🚪</span>
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats admin-only" id="statsContainer">
+      <!-- Stats will be populated by JavaScript -->
+    </div>
+
+    <div class="filters admin-only">
+      <div class="filter-group">
+        <label for="statusFilter">Status:</label>
+        <select id="statusFilter" onchange="filterRequests()">
+          <option value="all">All Statuses</option>
+          <option value="pending">Pending</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+
+        <label for="departmentFilter">Department:</label>
+        <select id="departmentFilter" onchange="filterRequests()">
+          <option value="all">All Departments</option>
+          <option value="Operation">Operation</option>
+          <option value="Finance">Finance</option>
+          <option value="Admin">Admin</option>
+          <option value="Utility">Utility</option>
+          <option value="Marketing">Marketing</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <!-- ADDED: Leave Type Filter -->
+        <label for="leaveTypeFilter">Leave Type:</label>
+        <select id="leaveTypeFilter" onchange="filterRequests()">
+          <option value="all">All Types</option>
+          <option value="Vacation">Vacation</option>
+          <option value="Sick">Sick</option>
+          <option value="Emergency">Emergency</option>
+          <option value="Maternity">Maternity</option>
+          <option value="Paternity">Paternity</option>
+          <option value="Bereavement">Bereavement</option>
+          <option value="Personal">Personal</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="Search by name, username, reason, or leave type..." onkeyup="searchRequests()">
+          <button class="search-btn" onclick="searchRequests()">🔍 Search</button>
+          <button class="clear-btn" onclick="clearSearch()">❌ Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="requests-info">
+      <span id="requestsCount">0 requests found</span>
+      <button class="export-btn admin-only" onclick="exportToCSV()">📊 Export CSV</button>
+    </div>
+
+    <div class="requests-table-container">
+      <table class="requests-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Department</th>
+            <!-- ADDED: Leave Type Column -->
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Days</th>
+            <th>Reason</th>
+            <th>Date Filed</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="requestsTableBody">
+          <!-- Table rows will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

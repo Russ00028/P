@@ -1,0 +1,66 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>  
+    <div class="container">
+    <div class="header">
+    <h1></h1>
+    <div class="header-actions">
+        <button class="menu-btn" onclick="toggleMenu()">☰ Menu</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+              <button class="menu-item" onclick="goToAdmin()">
+                
+                 Leave
+            </button>
+            <button class="menu-item" onclick="goToDashboard()">
+                
+                Dashboard
+            </button>
+            <button class="menu-item" onclick="goToLeaveForm()">
+               
+                Leave Form
+            </button>
+            <button class="menu-item" onclick="goToSchedule()">
+                
+                Schedule
+            </button>
+            <button class="menu-item" onclick="viewProfile()">
+               <span class="menu-icon">👤</span>
+               Profile
+            </button>
+
+            <button class="menu-item" onclick="logout()">
+               
+                Logout
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+
+<html lang="en">   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CSV Connection</title>
+    <link rel="stylesheet" href="sched.CSS">
+</head>
+<body>                      
+<div class="container">
+    <button onclick="refreshSchedule()" class="refresh-btn">
+        🚀 Refresh
+    </button>
+    
+    <!-- Results will appear here -->
+     
+</div>
+<div id="scheduleDisplay"></div>
+<script src="sched.JS"></script>
+</body>
+</html>

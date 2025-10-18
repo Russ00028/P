@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Leave Management System</title>
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>👤 My Profile</h1>
+            <div class="header-actions">
+                <button class="menu-btn" id="menuBtn">☰ Menu</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <button class="menu-item" onclick="goToDashboard()">
+                        <span class="menu-icon">📊</span>
+                        Dashboard
+                    </button>
+                    <button class="menu-item" onclick="goToLeaveForm()">
+                        <span class="menu-icon">📝</span>
+                        Leave Form
+                    </button>
+                    <button class="menu-item" onclick="goToAdmin()">
+                        <span class="menu-icon">⚙️</span>
+                        Admin Panel
+                    </button>
+                    <button class="menu-item" onclick="logout()">
+                        <span class="menu-icon">🚪</span>
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="card">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <div class="avatar">
+                    <div class="avatar-placeholder" id="userAvatar">TU</div>
+                </div>
+                <div class="profile-info">
+                    <h2 id="profileName">Test User</h2>
+                    <p id="profileRoleDepartment">Regular User - Operations</p>
+                    <p class="member-since" id="memberSince">Member since: October 14, 2025</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="openTab('personal')">Personal Info</button>
+                <button class="tab-button" onclick="openTab('security')">Security</button>
+                <button class="tab-button" onclick="openTab('preferences')">Preferences</button>
+            </div>
+
+            <!-- Personal Info Tab -->
+            <div id="personal" class="tab-content active">
+                <form id="personalForm" class="profile-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="profileUsername">Username</label>
+                            <input type="text" id="profileUsername" readonly class="readonly-field">
+                            <div class="field-hint">Username cannot be changed</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profileFullName">Full Name *</label>
+                            <input type="text" id="profileFullName" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profileEmail">Email Address *</label>
+                            <input type="email" id="profileEmail" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profilePhone">Phone Number</label>
+                            <input type="tel" id="profilePhone" placeholder="+1 (555) 123-4567">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profileDepartment">Department *</label>
+                            <select id="profileDepartment" required>
+                                <option value="">Select Department</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="sales">Sales</option>
+                                <option value="it">IT Support</option>
+                                <option value="operations">Operations</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="profilePosition">Job Position</label>
+                            <input type="text" id="profilePosition" placeholder="e.g., Software Engineer">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="profileBio">Bio/Description</label>
+                            <textarea id="profileBio" placeholder="Tell us about yourself..." rows="3" maxlength="200"></textarea>
+                            <div class="char-count">
+                                <span id="bioCharCount">0</span>/200 characters
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="clear-btn" onclick="resetPersonalForm()">Reset</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Update Profile</span>
+                            <span class="btn-loading" style="display: none;">Updating...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Security Tab -->
+            <div id="security" class="tab-content">
+                <form id="securityForm" class="profile-form">
+                    <div class="security-info">
+                        <h3>Change Password</h3>
+                        <p class="security-hint">Ensure your account is using a long, random password to stay secure.</p>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password *</label>
+                            <input type="password" id="currentPassword" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword">New Password *</label>
+                            <input type="password" id="newPassword" required minlength="8">
+                            <div class="password-strength">
+                                <div class="strength-meter">
+                                    <div class="strength-bar" id="strengthBar"></div>
+                                </div>
+                                <div class="strength-text">Password strength: <span id="strengthText">None</span></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password *</label>
+                            <input type="password" id="confirmPassword" required>
+                            <div class="password-match" id="passwordMatch"></div>
+                        </div>
+                    </div>
+
+                    <div class="password-requirements">
+                        <h4>Password Requirements:</h4>
+                        <ul>
+                            <li id="reqLength">At least 8 characters</li>
+                            <li id="reqUppercase">One uppercase letter</li>
+                            <li id="reqLowercase">One lowercase letter</li>
+                            <li id="reqNumber">One number</li>
+                            <li id="reqSpecial">One special character</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="clear-btn" onclick="resetSecurityForm()">Clear</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Change Password</span>
+                            <span class="btn-loading" style="display: none;">Updating...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preferences Tab -->
+            <div id="preferences" class="tab-content">
+                <form id="preferencesForm" class="profile-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="prefLanguage">Language</label>
+                            <select id="prefLanguage">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                                <option value="fr">French</option>
+                                <option value="de">German</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prefTimezone">Timezone</label>
+                            <select id="prefTimezone">
+                                <option value="utc-8">Pacific Time (UTC-8)</option>
+                                <option value="utc-7">Mountain Time (UTC-7)</option>
+                                <option value="utc-6">Central Time (UTC-6)</option>
+                                <option value="utc-5">Eastern Time (UTC-5)</option>
+                                <option value="utc+0">GMT (UTC+0)</option>
+                                <option value="utc+1">Central European Time (UTC+1)</option>
+                                <option value="utc+8">Singapore Time (UTC+8)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prefDateFormat">Date Format</label>
+                            <select id="prefDateFormat">
+                                <option value="mm/dd/yyyy">MM/DD/YYYY</option>
+                                <option value="dd/mm/yyyy">DD/MM/YYYY</option>
+                                <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prefNotifications">Email Notifications</label>
+                            <select id="prefNotifications">
+                                <option value="all">All notifications</option>
+                                <option value="important">Important only</option>
+                                <option value="none">No notifications</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="preferences-section">
+                        <h3>Leave Request Preferences</h3>
+                        <div class="checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prefAutoSave" checked>
+                                <span class="checkmark"></span>
+                                Auto-save draft requests
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prefEmailConfirm">
+                                <span class="checkmark"></span>
+                                Send email confirmation for submissions
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="prefManagerNotify" checked>
+                                <span class="checkmark"></span>
+                                Notify manager immediately
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="clear-btn" onclick="resetPreferences()">Reset to Defaults</button>
+                        <button type="submit" class="submit-btn">
+                            <span class="btn-text">Save Preferences</span>
+                            <span class="btn-loading" style="display: none;">Saving...</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Notification Area -->
+        <div class="result-message" id="result" style="display: none;"></div>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>
